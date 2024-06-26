@@ -1,0 +1,25 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container2">
+    <div class="image">
+        <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" alt="Book Cover" width="200" height="250">
+    </div>
+    <div class="data">
+        <h1><%=book.title%></h1>
+        <h4>Author: <%=book.author%></h4>
+        <p style="color: #0c1844;"><strong>Recommended: <%=book.review%>/10</strong></p>
+        <p id="merry" style="font-size: large;"><%=book.note%></p>
+    </div>
+</div>
+<div class="btn">
+    <form action="/edit/<%= book.id %>" method="get" style="display:inline;">
+        <button id="b1" type="submit">Edit</button>
+    </form>
+    
+    <form action="/delete/<%= book.id %>" method="post" style="display:inline;">
+        <button id="b2" type="submit">Delete</button>
+    </form>
+    
+</div>
+
+<%- include('partials/footer.ejs'); -%>

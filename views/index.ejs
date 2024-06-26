@@ -1,0 +1,35 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container">
+    <h1>Books I've read</h1>
+    <div class="description">
+        <p>I've created this website to keep track of all the books I've read. It also includes a brief summary and reviews of the books</p>
+    </div>
+
+    <% if (items.length === 0) { %>
+      <p style="margin-top: 50px;"><strong>Nothing here.</strong></p>
+    <% } else { %>
+      <div class="row">
+        <% items.forEach((book) => { %> 
+          <div class="col-md-6 mb-3">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static content-box">
+                <h4 class="mb-0 truncated-text"><%= book.title %></h4>
+                <div class="mb-1 text-body-secondary">Date: <%= book.date %></div>
+                <strong class="d-inline-block mb-2 text-primary-emphasis">Recommended: <%= book.review %>/10</strong>
+                <p class="card-text mb-auto truncated-text"><%= book.note %></p>
+                <form action="/view/<%= book.id %>" method="get">
+                  <button type="submit" id="b1">View</button>
+                </form>
+              </div>
+              <div class="col-auto d-none d-lg-block">
+                <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" alt="Book Cover" width="200" height="250">
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+</div>
+
+<%- include('partials/footer.ejs'); -%>
